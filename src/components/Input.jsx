@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { IoMdAttach } from "react-icons/io";
 import { BsFileEarmarkImage } from "react-icons/bs";
 import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
@@ -17,7 +16,6 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 const Input = () => {
   const [text, setText] = useState("");
   const [image, setImage] = useState(null);
-  const [file, setFile] = useState(null);
 
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
@@ -86,14 +84,13 @@ const Input = () => {
         value={text}
       />
       <div className="send">
-        <IoMdAttach style={{ fontSize: "1.5rem", cursor: "pointer" }} />
         <input
           type="file"
           style={{ display: "none" }}
-          id="file"
+          id="image"
           onChange={(e) => setImage(e.target.files[0])}
         />
-        <label htmlFor="file">
+        <label htmlFor="image">
           <BsFileEarmarkImage
             style={{ fontSize: "1.5rem", cursor: "pointer" }}
           />
